@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getWin(playerChoice, computerChoice = convertChoice()){
+            playerChoice = convertChoice(playerChoice);
+            console.log(`You Played: ${playerChoice}     Machine Played: ${computerChoice}`)
+            if(playerChoice==computerChoice){
+                return 40
+            }
+            else if(playerChoice == "Rock"){
+                if(computerChoice == "Paper"){
+                    return false
+                }
+                return true
+            }
+            else if(playerChoice == "Paper"){
+                if(computerChoice == "Scissor"){
+                    return false
+                }
+                return true
+            }
+            else{
+                if(computerChoice == "Rock"){
+                    return false
+                }
+                return true
+            }
+        }
+        function convertChoice(choose = getRandChoice()){
+            if(choose==1){
+                return "Rock"
+            }
+            else if(choose==2){
+                return "Paper"
+            }
+            return "Scissor"
+        }
+        function getRandChoice(){
+            return Math.floor(Math.random()*3)+1
+        }
+        
+        let playTally = 0;
+        let machTally = 0;
+        for(let i = 0; i<5 ; i++){
+            console.log("---------------------------");
+            let winCond = 40;
+            let countRounds = 0;
+            while(winCond == 40){
+                countRounds++;
+                console.log(`Round ${countRounds}... BEGINNN!!`);
+                console.log(`Play Wins: ${playTally}     Machine Wins: ${machTally}`)
+                let playerInput = parseInt(prompt("Would you like to play Rock, Paper, or Scissors (1,2,3)"));
+                winCond = getWin(playerInput);
+            }
+            if(winCond){
+                console.log("You won this round!");
+                playTally++;
+            }
+            else{
+                console.log("You lost this round:(");
+                machTally++;
+            }
+        }
+        if(playTally>machTally){
+            console.log("You won!!!");
+        }
+        else{
+            console.log("You Lose :(");
+            
+        }
+        console.log("---------------------------");
+        console.log("Final Tally:");
+        console.log(`Play Wins: ${playTally}     Machine Wins: ${machTally}`)
+        console.log("---------------------------");
+
+    </script>
+    
+</body>
+</html>
